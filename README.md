@@ -17,12 +17,31 @@ Prefer js and not css (`a:visited {color: cyan; }`) so we can simply refresh the
 
 Idea is to be able to detect on a page which links have been clicked.
 
+When a link will be clicked, the `visited` class will be added to highlight the link. When a second link will be clicked, all links with class `visited` will be modified to `already_visited` so we can make a clear, visual, difference between the last clicked one and the old ones.
+
+![Visited links](./images/visited_links.gif)
+
+```css
+<style>
+    .visited { background-color: #ffc107; }
+    .already_visited { color: #f3e3e3 !important; }
+</style>
+```
+
 ```javascript
 <script>
 document.addEventListener("DOMContentLoaded", () => {
     (
         addEventListener('click', function (ev) {
-            ev.target.style.color = 'cyan';
+
+            for(var i = 0, l=document.links.length; i<l; i++) {
+                if (document.links[i].classList.contains('visited')) {
+                    document.links[i].classList.remove('visited');
+                    document.links[i].classList.add('already_visited');
+                }
+            }
+
+            ev.target.classList.add('visited');
         })
     )
 });
