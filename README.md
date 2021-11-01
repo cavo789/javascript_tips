@@ -1,5 +1,7 @@
 # javascript_tips
 
+![Banner](./banner.svg)
+
 > Some tips &amp; tricks and snippets for javascript.
 
 * [Snippets](#snippets)
